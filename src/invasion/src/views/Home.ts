@@ -6,7 +6,8 @@ import WithRender from "@/templates/home.html";
 @WithRender
 @Component({
   components: {
-    HelloWorld, Grid
+    HelloWorld,
+    Grid
   }
 })
 export default class Home extends Vue {}

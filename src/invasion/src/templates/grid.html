@@ -2,7 +2,11 @@
     <tbody>
       <tr v-for="row in tiles">
         <td v-for="item in row">
-          {{item}}
+        <div class="tooltip">
+            <label>{{item.terrain.category}}</label>
+            <label>{{item.terrain.title}}</label>
+            <span class="tooltip-text">{{item.terrain.description}}</span>
+        </div>
         </td>
       </tr>
     </tbody>
