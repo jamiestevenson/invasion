@@ -1,4 +1,4 @@
-# invasion
+# invasion-app
 
 ## Project setup
 ```
