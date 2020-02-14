@@ -1,16 +1,22 @@
 <template>
   <div class="invasion">
     <h1>Invasion Game</h1>
-    <Grid />
+    <grid :tiles="board.grid" />
   </div>
 </template>
 
-<script>
-  import { Component, Vue, Props } from "vue-class-component";
-  import { Grid } from "@/components/Grid"
+<script lang="ts">
+import { Component, Vue, Prop } from "vue-property-decorator";
+import Grid from "../components/Grid.vue";
+import { defaultState, BoardState } from "../types";
 
-  @Component({components: { Grid }})
-  export default class Invasion extends Vue{
-    
-  }
+@Component({ components : { 'grid' : Grid } })
+export default class Invasion extends Vue {
+  @Prop({
+    default: () => {
+      return defaultState;
+    }
+  })
+  private board?: BoardState;
+}
 </script>
