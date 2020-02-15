@@ -20,3 +20,12 @@ export default class Invasion extends Vue {
   private board?: BoardState;
 }
 </script>
+
+<style>
+.invasion {
+  background: lightgrey;
+  padding: 15px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+</style>
