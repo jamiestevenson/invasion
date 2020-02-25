@@ -1,23 +1,26 @@
 <template>
   <div class="invasion">
     <h1>Invasion Game</h1>
-    <grid :tiles="board.grid" />
+    <controlpanel />
+    <grid :tiles="game.board.grid" />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
-import Grid from "../components/Grid.vue";
-import { defaultState, BoardState } from "../types";
+import Vue from "vue";
+import Component from "vue-class-component";
+import { State, Action, Getter } from "vuex-class";
+import Grid from "@/components/Grid.vue";
+import ControlPanel from "@/components/ControlPanel.vue";
+import { BoardState } from "@/invasion/types";
 
-@Component({ components : { 'grid' : Grid } })
+const namespace = "invasion";
+
+@Component({ components: { grid: Grid, controlpanel: ControlPanel } })
 export default class Invasion extends Vue {
-  @Prop({
-    default: () => {
-      return defaultState;
-    }
-  })
-  private board?: BoardState;
+  @State('invasion') game?: BoardState;
+  @Action("newGame" , { namespace }) newGame: any;
+  @Getter("boardSummary", { namespace }) boardSummary: string; 
 }
 </script>
 
@@ -27,5 +30,4 @@ export default class Invasion extends Vue {
   padding: 15px;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
-
 </style>

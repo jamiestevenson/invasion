@@ -14,8 +14,8 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { Tile } from "../types";
-import GridTile from "./GridTile.vue"
+import { Tile } from "@/invasion/types";
+import GridTile from "./GridTile.vue";
 
 @Component({ components : { 'gridtile': GridTile } })
 export default class Grid extends Vue {

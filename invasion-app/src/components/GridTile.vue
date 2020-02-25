@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { Tile } from "../types";
+import { Tile } from "@/invasion/types";
 
 @Component
 export default class GridTile extends Vue {
