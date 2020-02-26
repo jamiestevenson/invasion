@@ -25,6 +25,7 @@ export default class GridTile extends Vue {
 .tile {
   width: 120px;
   height: 120px;
+  border-radius: 5px;
 }
 
 .centre {
@@ -46,15 +47,33 @@ export default class GridTile extends Vue {
 .URBAN {
   color: white;
   background-color: cadetBlue;
+  box-shadow: 5px 5px 5px grey;
 }
 
 .RURAL {
   color: white;
   background-color: forestGreen;
+  box-shadow: 5px 5px 5px grey;
 }
 
 .HQ {
   color: white;
   background-color: tomato;
+  box-shadow: 5px 5px 5px grey;
+}
+
+.UNEXPLORED {
+  width: 100px;
+  height: 100px;
+  background-color: silver;
+  animation-name: fogofwar;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fogofwar {
+  0%  {background-color: grey;}
+  50% {background-color: lightgrey;}
+  100% {background-color: grey;}
 }
 </style>

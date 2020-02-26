@@ -1,7 +1,8 @@
 export enum Terrain {
   URBAN = "URBAN",
   RURAL = "RURAL",
-  HQ = "HQ"
+  HQ = "HQ",
+  UNEXPLORED = "UNEXPLORED"
 }
 
 export const defaultState: BoardState = {
@@ -87,22 +88,32 @@ export const defaultState: BoardState = {
   ]
 };
 
-export const newBoardState: BoardState = {
-  grid: [
-    [],
-    [
-      {
-        terrain: {
-          category: Terrain.HQ,
-          title: "Crash Site",
-          description: "A smoking wreckage"
-        },
-        tokens: ["drone", "drone", "drone"]
-      }
-    ],
-    []
-  ]
+const unexploredTile: Tile = {
+  terrain: {
+    category: Terrain.UNEXPLORED,
+    title: "Unexplored",
+    description: "???"
+  },
+  tokens: []
 };
+
+const hqTile: Tile = {
+  terrain: {
+    category: Terrain.HQ,
+    title: "Crash Site",
+    description: "A smoking wreckage"
+  },
+  tokens: ["drone", "drone", "drone"]
+};
+
+const startingGrid: Tile[][] = [[{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}]] as Tile[][];
+
+export function newBoardState(): BoardState {
+  let newGrid = startingGrid;
+  newGrid = newGrid.map(row => row.fill(unexploredTile));
+  newGrid[2][2] = hqTile;
+  return { grid: newGrid };
+}
 
 export const state: InvasionState = {
   board: defaultState,

@@ -2,7 +2,9 @@
   <div class="invasion">
     <h1>Invasion Game</h1>
     <controlpanel />
-    <grid :tiles="game.board.grid" />
+    <div style="display:flex;justify-content:center;align-items:center;">
+      <grid :tiles="game.board.grid" />
+    </div>
   </div>
 </template>
 
@@ -18,15 +20,15 @@ const namespace = "invasion";
 
 @Component({ components: { grid: Grid, controlpanel: ControlPanel } })
 export default class Invasion extends Vue {
-  @State('invasion') game?: BoardState;
-  @Action("newGame" , { namespace }) newGame: any;
-  @Getter("boardSummary", { namespace }) boardSummary: string; 
+  @State("invasion") game?: BoardState;
+  @Action("newGame", { namespace }) newGame: any;
+  @Getter("boardSummary", { namespace }) boardSummary(): string;
 }
 </script>
 
 <style>
 .invasion {
-  background: lightgrey;
+  background: palegreen;
   padding: 15px;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
