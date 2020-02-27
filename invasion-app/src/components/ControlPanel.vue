@@ -26,10 +26,6 @@ table {
   /*width: 90%;*/
 }
 
-table, th, td {
-  border: 1px solid black;
-}
-
 td {
   padding: 3px;
   /*width: 20%;*/

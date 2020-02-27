@@ -101,7 +101,7 @@ const hqTile: Tile = {
   terrain: {
     category: Terrain.HQ,
     title: "Crash Site",
-    description: "A smoking wreckage"
+    description: "A smoking wreck"
   },
   tokens: ["drone", "drone", "drone"]
 };

@@ -1,5 +1,5 @@
 import { GetterTree } from 'vuex';
-import { InvasionState, Terrain } from './types';
+import { InvasionState, Terrain, Tile } from './types';
 import { RootState } from '../types';
 
 export const getters: GetterTree<InvasionState, RootState> = {
@@ -20,5 +20,41 @@ export const getters: GetterTree<InvasionState, RootState> = {
             })
         })
         return "Rural: " + rural + ", Urban: " + urban;
+    },
+    getPerimeter(state): Tile[] {
+        return [
+            {
+              terrain: {
+                category: Terrain.RURAL,
+                title: "Fields",
+                description: "Fallow"
+              },
+              tokens: []
+            },
+            {
+              terrain: {
+                category: Terrain.RURAL,
+                title: "Fields",
+                description: "Fallow"
+              },
+              tokens: []
+            },
+            {
+              terrain: {
+                category: Terrain.URBAN,
+                title: "A Mall",
+                description: "Bright lights"
+              },
+              tokens: []
+            },
+            {
+              terrain: {
+                category: Terrain.RURAL,
+                title: "Fields",
+                description: "Fallow"
+              },
+              tokens: []
+            }
+        ];
     }
 };
