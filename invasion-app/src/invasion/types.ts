@@ -97,6 +97,49 @@ const unexploredTile: Tile = {
   tokens: []
 };
 
+const perimeterDeck: Tile[] = [
+  {
+    terrain: {
+      category: Terrain.RURAL,
+      title: "Fields",
+      description: "Fallow"
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.RURAL,
+      title: "Fields",
+      description: "Fallow"
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.URBAN,
+      title: "A Mall",
+      description: "Bright lights"
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.RURAL,
+      title: "Fields",
+      description: "Fallow"
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.URBAN,
+      title: "Factories",
+      description: "Useful for rebuilding"
+    },
+    tokens: []
+  }
+];
+
 const hqTile: Tile = {
   terrain: {
     category: Terrain.HQ,
@@ -106,7 +149,13 @@ const hqTile: Tile = {
   tokens: ["drone", "drone", "drone"]
 };
 
-const startingGrid: Tile[][] = [[{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}], [{}, {}, {}, {}, {}]] as Tile[][];
+const startingGrid: Tile[][] = [
+  [{}, {}, {}, {}, {}],
+  [{}, {}, {}, {}, {}],
+  [{}, {}, {}, {}, {}],
+  [{}, {}, {}, {}, {}],
+  [{}, {}, {}, {}, {}]
+] as Tile[][];
 
 export function newBoardState(): BoardState {
   let newGrid = startingGrid;
@@ -115,13 +164,24 @@ export function newBoardState(): BoardState {
   return { grid: newGrid };
 }
 
+export function perimeterDeckCopy(): Tile[] {
+  // Ensures a deep copy with no refrences between the template deck and the volatile game deck.
+  return JSON.parse(JSON.stringify(perimeterDeck));
+}
+
 export const state: InvasionState = {
   board: defaultState,
+  perimeter: [],
+  perimeterDeck: [],
+  perimeterSize: 3,
   message: "Initial message"
 };
 
 export interface InvasionState {
   board: BoardState;
+  perimeter: Tile[];
+  perimeterDeck: Tile[];
+  perimeterSize: number;
   message: string;
 }
 

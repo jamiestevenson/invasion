@@ -22,21 +22,11 @@
 <style>
 table {
   border-collapse: collapse;
-  /* table-layout: fixed;*/
-  /*width: 90%;*/
 }
 
 td {
   padding: 3px;
-  /*width: 20%;*/
-  /* position: relative; */
 }
-
-/*td:after {
-  content: '';
-  display: block;
-  margin-top: 100%;
-}*/
 
 td.gridtile {
   position: absolute;

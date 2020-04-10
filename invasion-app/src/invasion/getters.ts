@@ -22,39 +22,7 @@ export const getters: GetterTree<InvasionState, RootState> = {
         return "Rural: " + rural + ", Urban: " + urban;
     },
     getPerimeter(state): Tile[] {
-        return [
-            {
-              terrain: {
-                category: Terrain.RURAL,
-                title: "Fields",
-                description: "Fallow"
-              },
-              tokens: []
-            },
-            {
-              terrain: {
-                category: Terrain.RURAL,
-                title: "Fields",
-                description: "Fallow"
-              },
-              tokens: []
-            },
-            {
-              terrain: {
-                category: Terrain.URBAN,
-                title: "A Mall",
-                description: "Bright lights"
-              },
-              tokens: []
-            },
-            {
-              terrain: {
-                category: Terrain.RURAL,
-                title: "Fields",
-                description: "Fallow"
-              },
-              tokens: []
-            }
-        ];
+      console.log("Getting perimeter: " + JSON.stringify(state.perimeter));
+      return state.perimeter;
     }
 };
