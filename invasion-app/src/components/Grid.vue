@@ -1,7 +1,7 @@
 <template>
   <div>
     <label v-if="!tiles">No board data!</label>
-    <label v-else>Found board data!</label>
+    <label v-else>{{boardSummary}}</label>
     <table>
       <tr v-for="(row, rindex) in tiles" :key="rindex">
         <td v-for="(t, tindex) in row" :key="tindex">
@@ -14,24 +14,28 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+import { State, Action, Getter } from "vuex-class";
 import { Tile } from "@/invasion/types";
 import GridTile from "./GridTile.vue";
+
+const namespace = "invasion";
 
 @Component({ components : { 'gridtile': GridTile } })
 export default class Grid extends Vue {
   @Prop() private tiles?: Tile[][];
+  @Getter("boardSummary", { namespace }) boardSummary : string;
 }
 </script>
 
 <style>
 table {
   border-collapse: collapse;
-  /* table-layout: fixed;*/
   /*width: 90%;*/
+  position: center;
 }
 
 table, th, td {
-  border: 1px solid black;
+  border: 1px solid seagreen;
 }
 
 td {
@@ -52,6 +56,12 @@ td.gridtile {
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.tile {
+  width: 120px;
+  height: 120px;
+  border-radius: 5px;
 }
 
 </style>
