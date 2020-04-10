@@ -1,15 +1,15 @@
 import { MutationTree } from "vuex";
-import { InvasionState, Tile, newBoardState, perimeterDeckCopy } from "./types";
+import { InvasionState, Tile, newBoardState, perimeterDeckCopy, consequencesDeckCopy, Consequence } from "./types";
 
-function shuffle(array: Tile[]) {
+function shuffle(array: any[]) {
     array.sort(() => Math.random() - 0.5);
 }
 
 export const mutations: MutationTree<InvasionState> = {
   setUpNewGame(state: InvasionState) {
-    console.log("board state before setting up new game: " + JSON.stringify(state));
     state.message = "board loaded";
     state.board = newBoardState();
+
     state.perimeterSize = 3;
     const perimDeck = perimeterDeckCopy();
     shuffle(perimDeck);
@@ -17,7 +17,10 @@ export const mutations: MutationTree<InvasionState> = {
     const deck = perimDeck.slice(state.perimeterSize);
     state.perimeterDeck = deck;
     state.perimeter = dealt;
-    console.log("board state after setting up new game: " + JSON.stringify(state));
+
+    const consDeck = consequencesDeckCopy();
+    shuffle(consDeck)
+    state.consequencesDeck = consDeck;
   },
   loadBoardError(state) {
     state.message = "error loading board";

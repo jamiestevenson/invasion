@@ -1,10 +1,16 @@
 <template>
   <div>
-    <label v-if="getPerimeter===undefined||getPerimeter.length===0">No sideboard data!</label>
-    <label v-else>Perimeter</label>
-    <div>
+    <div style="align:centre" >
+      <h2>Consequences</h2>
+      <label >Remaining: {{getConsequencesDeck===undefined ? 0 : getConsequencesDeck.length}}</label>
+    </div>
+      <div>
+      <h2>Perimeter</h2>
+      <label v-if="getPerimeter===undefined||getPerimeter.length===0">No sideboard data!</label>
+      </div>
+    <div class="centre">
       <gridtile
-        class="perimeter-tile"
+        style="margin: 0 auto"
         v-for="(t, index) in getPerimeter" 
         :tile="t" 
         :key="index" />
@@ -23,10 +29,12 @@ const namespace = "invasion";
 @Component({ components : { 'gridtile': GridTile } })
 export default class SideBoard extends Vue {
   @Getter("getPerimeter", { namespace }) getPerimeter : Tile[];
+  @Getter("getConsequencesDeck", { namespace }) getConsequencesDeck : Consequences[];
 }
 </script>
 
 <style>
+
 table {
   border-collapse: collapse;
   /*width: 90%;*/
@@ -36,7 +44,6 @@ table {
 .perimeter-tile.tile {
   /*padding top, lr, bottom*/
   padding: 5px 3px 5px;
-  position: relative;
   word-wrap: normal;
 }
 

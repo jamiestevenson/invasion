@@ -1,5 +1,5 @@
 import { GetterTree } from 'vuex';
-import { InvasionState, Terrain, Tile } from './types';
+import { InvasionState, Terrain, Tile, Consequence } from './types';
 import { RootState } from '../types';
 
 export const getters: GetterTree<InvasionState, RootState> = {
@@ -22,7 +22,9 @@ export const getters: GetterTree<InvasionState, RootState> = {
         return "Rural: " + rural + ", Urban: " + urban;
     },
     getPerimeter(state): Tile[] {
-      console.log("Getting perimeter: " + JSON.stringify(state.perimeter));
       return state.perimeter;
+    },
+    getConsequencesDeck(state): Consequence[] {
+      return state.consequencesDeck;
     }
 };
