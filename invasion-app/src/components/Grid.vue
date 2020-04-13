@@ -23,7 +23,7 @@ const namespace = "invasion";
 @Component({ components : { 'gridtile': GridTile } })
 export default class Grid extends Vue {
   @Prop() private tiles?: Tile[][];
-  @Getter("boardSummary", { namespace }) boardSummary : string;
+  @Getter("boardSummary", { namespace }) boardSummary : string; // eslint-disable-line
 }
 </script>
 

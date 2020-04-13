@@ -5,94 +5,104 @@ export enum Terrain {
   UNEXPLORED = "UNEXPLORED"
 }
 
-export const defaultState: BoardState = {
-  grid: [
-    [
-      {
-        terrain: {
-          category: Terrain.RURAL,
-          title: "Farm",
-          description: "All the corn you can eat"
-        },
-        tokens: []
-      },
-      {
-        terrain: {
-          category: Terrain.RURAL,
-          title: "Farm",
-          description: "More corn..."
-        },
-        tokens: []
-      },
-      {
-        terrain: {
-          category: Terrain.RURAL,
-          title: "Forest",
-          description: "Trees and squirrels"
-        },
-        tokens: []
-      }
-    ],
-    [
-      {
-        terrain: {
-          category: Terrain.URBAN,
-          title: "Township",
-          description: "Unguarded..."
-        },
-        tokens: []
-      },
-      {
-        terrain: {
-          category: Terrain.HQ,
-          title: "Crash Site",
-          description: "A smoking wreckage"
-        },
-        tokens: ["drone", "drone", "drone"]
-      },
-      {
-        terrain: {
-          category: Terrain.RURAL,
-          title: "Scrubland",
-          description: "Tumbleweeds"
-        },
-        tokens: []
-      }
-    ],
-    [
-      {
-        terrain: {
-          category: Terrain.RURAL,
-          title: "Farm",
-          description: "More corn..."
-        },
-        tokens: []
-      },
-      {
-        terrain: {
-          category: Terrain.URBAN,
-          title: "Industrial Belt",
-          description: "Lots of metal and smoke - and power"
-        },
-        tokens: []
-      },
-      {
-        terrain: {
-          category: Terrain.URBAN,
-          title: "Suburbs",
-          description: "Generic family homes and malls"
-        },
-        tokens: []
-      }
-    ]
-  ]
-};
+export enum Navigability {
+  NONE = "0",
+  ONE = "1",
+  TWO = "2",
+  THREE = "3",
+  UNLIMITED = "1000"  // Keep an eye on this, anticipate many fewer units on board
+}
+
+// export const defaultState: BoardState = {
+//   grid: [
+//     [
+//       {
+//         terrain: {
+//           category: Terrain.RURAL,
+//           title: "Farm",
+//           description: "All the corn you can eat"
+//         },
+//         tokens: []
+//       },
+//       {
+//         terrain: {
+//           category: Terrain.RURAL,
+//           title: "Farm",
+//           description: "More corn..."
+//         },
+//         tokens: []
+//       },
+//       {
+//         terrain: {
+//           category: Terrain.RURAL,
+//           title: "Forest",
+//           description: "Trees and squirrels"
+//         },
+//         tokens: []
+//       }
+//     ],
+//     [
+//       {
+//         terrain: {
+//           category: Terrain.URBAN,
+//           title: "Township",
+//           description: "Unguarded..."
+//         },
+//         tokens: []
+//       },
+//       {
+//         terrain: {
+//           category: Terrain.HQ,
+//           title: "Crash Site",
+//           description: "A smoking wreckage"
+//         },
+//         tokens: ["drone", "drone", "drone"]
+//       },
+//       {
+//         terrain: {
+//           category: Terrain.RURAL,
+//           title: "Scrubland",
+//           description: "Tumbleweeds"
+//         },
+//         tokens: []
+//       }
+//     ],
+//     [
+//       {
+//         terrain: {
+//           category: Terrain.RURAL,
+//           title: "Farm",
+//           description: "More corn..."
+//         },
+//         tokens: []
+//       },
+//       {
+//         terrain: {
+//           category: Terrain.URBAN,
+//           title: "Industrial Belt",
+//           description: "Lots of metal and smoke - and power"
+//         },
+//         tokens: []
+//       },
+//       {
+//         terrain: {
+//           category: Terrain.URBAN,
+//           title: "Suburbs",
+//           description: "Generic family homes and malls"
+//         },
+//         tokens: []
+//       }
+//     ]
+//   ]
+// };
 
 const unexploredTile: Tile = {
   terrain: {
     category: Terrain.UNEXPLORED,
     title: "Unexplored",
-    description: "???"
+    description: "???",
+    resources: {},
+    movement: Navigability.NONE
   },
   tokens: []
 };
@@ -101,32 +111,376 @@ const perimeterDeck: Tile[] = [
   {
     terrain: {
       category: Terrain.RURAL,
-      title: "Fields",
-      description: "Fallow"
+      title: "Scrubland",
+      description: "Rocks and weeds",
+      resources: {
+        material: 1
+      },
+      movement: Navigability.THREE
     },
     tokens: []
   },
   {
     terrain: {
       category: Terrain.RURAL,
-      title: "Fields",
-      description: "Fallow"
+      title: "Canyon River",
+      description: "Crossed by a bridge",
+      resources: {
+        material: 1
+      },
+      movement: Navigability.ONE
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.RURAL,
+      title: "Wind Farm",
+      description: "Power for the taking",
+      resources: {
+        power: 1
+      },
+      movement: Navigability.TWO
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.RURAL,
+      title: "Ghost Town",
+      description: "Not a living soul",
+      resources: {
+        material: 1
+      },
+      movement: Navigability.TWO
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.RURAL,
+      title: "Lake",
+      description: "Little of use",
+      resources: {
+        material: 1
+      },
+      movement: Navigability.ONE
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.RURAL,
+      title: "Village",
+      description: "",
+      resources: {
+        population: 1,
+        power: 1
+      },
+      movement: Navigability.ONE
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.RURAL,
+      title: "Park",
+      description: "",
+      resources: {
+        material: 1
+      },
+      movement: Navigability.TWO
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.RURAL,
+      title: "Orchard",
+      description: "",
+      resources: {
+        population: 1,
+        material: 1
+      },
+      movement: Navigability.ONE
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.RURAL,
+      title: "Gas Station",
+      description: "A lonely highway stop",
+      resources: {
+        material: 1,
+        power: 1
+      },
+      movement: Navigability.THREE
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.RURAL,
+      title: "Forest",
+      description: "",
+      resources: {
+        material: 1
+      },
+      movement: Navigability.ONE
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.RURAL,
+      title: "Highway",
+      description: "",
+      resources: {
+        material: 1
+      },
+      movement: Navigability.THREE
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.RURAL,
+      title: "Farm",
+      description: "",
+      resources: {
+        population: 1,
+        material: 1
+      },
+      movement: Navigability.TWO
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.RURAL,
+      title: "Trailer Park",
+      description: "",
+      resources: {
+        population: 1
+      },
+      movement: Navigability.TWO
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.RURAL,
+      title: "Golf Course",
+      description: "",
+      resources: {
+        material: 1
+      },
+      movement: Navigability.THREE
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.RURAL,
+      title: "Exhausted Mine",
+      description: "",
+      resources: {
+        material: 1
+      },
+      movement: Navigability.ONE
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.RURAL,
+      title: "Farm",
+      description: "",
+      resources: {
+        material: 1,
+        power: 1
+      },
+      movement: Navigability.TWO
     },
     tokens: []
   },
   {
     terrain: {
       category: Terrain.URBAN,
-      title: "A Mall",
-      description: "Bright lights"
+      title: "Landfill",
+      description: "",
+      resources: {
+        material: 2
+      },
+      movement: Navigability.ONE
     },
     tokens: []
   },
   {
     terrain: {
-      category: Terrain.RURAL,
-      title: "Fields",
-      description: "Fallow"
+      category: Terrain.URBAN,
+      title: "Smelting Plant",
+      description: "",
+      resources: {
+        material: 2,
+        power: 2
+      },
+      reinforcement: 1,
+      movement: Navigability.TWO
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.URBAN,
+      title: "Hydroelectric Dam",
+      description: "",
+      resources: {
+        material: 1,
+        power: 2
+      },
+      movement: Navigability.ONE
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.URBAN,
+      title: "Coal Power Station",
+      description: "",
+      resources: {
+        power: 3
+      },
+      movement: Navigability.TWO
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.URBAN,
+      title: "Nuclear Power Station",
+      description: "",
+      resources: {
+        material: 1,
+        power: 3
+      },
+      reinforcement: 1,
+      movement: Navigability.ONE
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.URBAN,
+      title: "Airport",
+      description: "",
+      resources: {
+        material: 1,
+        power: 1,
+        population: 1
+      },
+      reinforcement: 1,
+      movement: Navigability.UNLIMITED
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.URBAN,
+      title: "Port",
+      description: "",
+      resources: {
+        material: 2,
+        population: 1
+      },
+      reinforcement: 1,
+      movement: Navigability.UNLIMITED
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.URBAN,
+      title: "Military Base",
+      description: "",
+      resources: {
+        material: 2,
+        power: 1,
+        population: 2
+      },
+      reinforcement: 3,
+      movement: Navigability.UNLIMITED
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.URBAN,
+      title: "City",
+      description: "",
+      resources: {
+        material: 1,
+        power: 1,
+        population: 3
+      },
+      movement: Navigability.THREE
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.URBAN,
+      title: "Mine",
+      description: "",
+      resources: {
+        material: 2,
+        population: 1
+      },
+      reinforcement: 1,
+      movement: Navigability.ONE
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.URBAN,
+      title: "Strip Mine",
+      description: "",
+      resources: {
+        material: 2,
+        power: 1
+      },
+      reinforcement: 1,
+      movement: Navigability.ONE
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.URBAN,
+      title: "Airforce Base",
+      description: "",
+      resources: {
+        material: 2,
+        power: 1,
+        population: 1
+      },
+      reinforcement: 2,
+      movement: Navigability.UNLIMITED
+    },
+    tokens: [],
+  },
+  {
+    terrain: {
+      category: Terrain.URBAN,
+      title: "Theme Park",
+      description: "",
+      resources: {
+        population: 2,
+        power: 1
+      },
+      movement: Navigability.TWO
     },
     tokens: []
   },
@@ -134,13 +488,34 @@ const perimeterDeck: Tile[] = [
     terrain: {
       category: Terrain.URBAN,
       title: "Factories",
-      description: "Useful for rebuilding"
+      description: "",
+      resources: {
+        population: 1,
+        power: 1,
+        material: 2
+      },
+      movement: Navigability.THREE
+    },
+    tokens: []
+  },
+  {
+    terrain: {
+      category: Terrain.URBAN,
+      title: "City",
+      description: "",
+      resources: {
+        population: 3,
+        power: 2,
+        material: 2
+      },
+      reinforcement: 1,
+      movement: Navigability.THREE
     },
     tokens: []
   }
 ];
 
-const consequencesDeck : Consequence[] = [
+const consequencesDeck: Consequence[] = [
   {
     title: "Survivalist Bunker",
     effects: [
@@ -263,7 +638,7 @@ const consequencesDeck : Consequence[] = [
   }
 ];
 
-const buildings : Building = [
+const buildings: Building[] = [
   {
     name: "Relay",
     drones: 2,
@@ -276,14 +651,18 @@ const buildings : Building = [
         requirement: {
           power: 2
         },
-        effects: ["Broadcast Power: Drones move out of this location for no movement cost"]
+        effects: [
+          "Broadcast Power: Drones move out of this location for no movement cost"
+        ]
       },
       {
-        requirements: {
+        requirement: {
           power: 1,
-          materials: 1
+          material: 1
         },
-        effects: ["Hazard: Reduce resistance stacks that enter this location by one"]
+        effects: [
+          "Hazard: Reduce resistance stacks that enter this location by one"
+        ]
       }
     ]
   },
@@ -302,11 +681,13 @@ const buildings : Building = [
         effects: ["Place +1 MATERIAL token on an adjacent location"]
       },
       {
-        requirements: {
+        requirement: {
           population: 1,
-          materials: 1
+          material: 1
         },
-        effects: ["Hazard: Reduce resistance stacks that enter this location by one"]
+        effects: [
+          "Hazard: Reduce resistance stacks that enter this location by one"
+        ]
       }
     ]
   },
@@ -356,7 +737,7 @@ const buildings : Building = [
     drones: 3,
     requirement: {
       power: 2,
-      materials: 2
+      material: 2
     },
     effects: [
       "Gain one TECHNOLOGY",
@@ -371,17 +752,15 @@ const buildings : Building = [
     name: "Skybeam Array",
     drones: 3,
     requirement: {
-      materials: 1,
+      material: 1,
       power: 2
     },
-    effects: [
-      "Increase ALERT level (when first placed)"
-    ],
+    effects: ["Increase ALERT level (when first placed)"],
     upgrades: [
       {
-        requirement:{
-          materials: 1,
-          power: 3,
+        requirement: {
+          material: 1,
+          power: 3
         },
         effects: [
           "TRIGGER: Start of Invader's turn. EFFECT: Place a 'Teleport Drone' token on this location",
@@ -389,14 +768,12 @@ const buildings : Building = [
         ]
       },
       {
-        requirement:{
-          materials: 1,
+        requirement: {
+          material: 1,
           power: 2,
           population: 2
         },
-        effects: [
-          "EFFECT: Reduce alert level by 2"
-        ]
+        effects: ["EFFECT: Reduce alert level by 2"]
       }
     ]
   },
@@ -404,7 +781,7 @@ const buildings : Building = [
     name: "Fabricator",
     drones: 4,
     requirement: {
-      materials: 1,
+      material: 1,
       power: 1,
       population: 1
     },
@@ -414,24 +791,20 @@ const buildings : Building = [
     ],
     upgrades: [
       {
-        requirement:{
-          materials: 1,
+        requirement: {
+          material: 1,
           power: 2,
-          population: 1,
+          population: 1
         },
-        effects: [
-          "EFFECT: Drones leave this location for no mevement cost"
-        ]
+        effects: ["EFFECT: Drones leave this location for no mevement cost"]
       },
       {
-        requirement:{
-          materials: 2,
+        requirement: {
+          material: 2,
           power: 1,
           population: 2
         },
-        effects: [
-          "EFFECT: Reduce alert level by 2"
-        ]
+        effects: ["EFFECT: Reduce alert level by 2"]
       }
     ]
   },
@@ -439,7 +812,7 @@ const buildings : Building = [
     name: "Pylon",
     drones: 5,
     requirement: {
-      materials: 2,
+      material: 2,
       power: 2
     },
     effects: [
@@ -449,8 +822,8 @@ const buildings : Building = [
     ],
     upgrades: [
       {
-        requirement:{
-          materials: 2,
+        requirement: {
+          material: 2,
           power: 2,
           population: 1
         },
@@ -464,7 +837,7 @@ const buildings : Building = [
     name: "Death Ray",
     drones: 5,
     requirement: {
-      materials: 1,
+      material: 1,
       power: 2
     },
     effects: [
@@ -474,19 +847,17 @@ const buildings : Building = [
     ],
     upgrades: [
       {
-        requirement:{
-          materials: 1,
+        requirement: {
+          material: 1,
           power: 3
         },
-        effects: [
-          "Range increases to two (i.e. adjacent to adjacent)"
-        ]
+        effects: ["Range increases to two (i.e. adjacent to adjacent)"]
       },
       {
-        requirement:{
-          materials: 1,
+        requirement: {
+          material: 1,
           power: 2,
-          population: 1,
+          population: 1
         },
         effects: [
           "You may activate this location after resistance units have moved."
@@ -494,13 +865,16 @@ const buildings : Building = [
       }
     ]
   }
-]
+];
 
 const hqTile: Tile = {
   terrain: {
     category: Terrain.HQ,
     title: "Crash Site",
-    description: "A smoking wreck"
+    description: "A smoking wreck",
+    movement: Navigability.UNLIMITED,
+    resources: {},
+    reinforcement: 0
   },
   tokens: ["drone", "drone", "drone"]
 };
@@ -530,7 +904,7 @@ export function consequencesDeckCopy(): Consequence[] {
 }
 
 export const state: InvasionState = {
-  board: defaultState,
+  board: newBoardState(),
   perimeter: [],
   perimeterDeck: [],
   perimeterSize: 3,
@@ -552,6 +926,9 @@ export interface Tile {
     category: Terrain;
     title: string;
     description: string;
+    resources: Resources;
+    reinforcement?: number;
+    movement: Navigability;
   };
   tokens: string[];
 }
@@ -568,14 +945,22 @@ export interface Consequence {
 }
 
 export interface Building {
-  name: string,
-  drones: number,
-  requirement: Resources,
-  effect: string[]
+  name: string;
+  drones: number;
+  requirement: Resources;
+  effects: string[];
+  upgrades: BuildingUpgrade[];
+}
+
+// NOTE may make this just a recursive reference to a Building
+// Will likely mean adding a reference to the parent building type.
+export interface BuildingUpgrade {
+  requirement: Resources;
+  effects: string[];
 }
 
 export interface Resources {
-  power: number,
-  material: number,
-  population: number
+  power?: number;
+  material?: number;
+  population?: number;
 }
