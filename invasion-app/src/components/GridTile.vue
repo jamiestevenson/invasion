@@ -1,8 +1,13 @@
 <template>
-  <div :class="'tile '+tile.terrain.category" v-if="tile">
+  <div :class="'tile ' + tile.terrain.category" v-if="tile">
     <label class="centre heavy" >{{tile.terrain.title}}</label>
     <br/>
     <label class="small left" >{{tile.terrain.description}}</label>
+    <div v-if="tile.terrain.resources">
+      <label v-if="tile.terrain.resources.power">{{"⚡".repeat(tile.terrain.resources.power)}}</label>
+      <label v-if="tile.terrain.resources.material">{{"💎".repeat(tile.terrain.resources.material)}}</label>
+      <label v-if="tile.terrain.resources.population">{{"👤".repeat(tile.terrain.resources.population)}}</label>
+    </div>
     <ul>
       <li class="small" v-for="(token, index) in tile.tokens" :key="index">
         {{token}}
