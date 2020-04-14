@@ -22,34 +22,19 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Getter } from "vuex-class";
-<<<<<<< HEAD
 import { Tile, Consequence } from "@/invasion/types";
-=======
-import { Tile } from "@/invasion/types";
->>>>>>> ce5d581c7f81df32dc69a514e4b01c6be9123f6e
 import GridTile from "./GridTile.vue";
 
 const namespace = "invasion";
 
-<<<<<<< HEAD
 @Component({ components : { gridtile: GridTile } })
 export default class SideBoard extends Vue {
   @Getter("getPerimeter", { namespace }) getPerimeter : Tile[]; // eslint-disable-line
   @Getter("getConsequencesDeck", { namespace }) getConsequencesDeck : Consequence[]; // eslint-disable-line
-=======
-@Component({ components : { 'gridtile': GridTile } })
-export default class SideBoard extends Vue {
-  @Getter("getPerimeter", { namespace }) getPerimeter : Tile[];
-  @Getter("getConsequencesDeck", { namespace }) getConsequencesDeck : Consequences[];
->>>>>>> ce5d581c7f81df32dc69a514e4b01c6be9123f6e
 }
 </script>
 
 <style>
-<<<<<<< HEAD
-=======
-
->>>>>>> ce5d581c7f81df32dc69a514e4b01c6be9123f6e
 table {
   border-collapse: collapse;
   /*width: 90%;*/
@@ -61,9 +46,4 @@ table {
   padding: 5px 3px 5px;
   word-wrap: normal;
 }
-<<<<<<< HEAD
 </style>
-=======
-
-</style>
->>>>>>> ce5d581c7f81df32dc69a514e4b01c6be9123f6e
