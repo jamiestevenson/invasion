@@ -10,7 +10,7 @@ export enum Navigability {
   ONE = "1",
   TWO = "2",
   THREE = "3",
-  UNLIMITED = "1000"  // Keep an eye on this, anticipate many fewer units on board
+  UNLIMITED = "1000" // Keep an eye on this, anticipate many fewer units on board
 }
 
 const unexploredTile: Tile = {
@@ -386,7 +386,7 @@ const perimeterDeck: Tile[] = [
       reinforcement: 2,
       movement: Navigability.UNLIMITED
     },
-    tokens: [],
+    tokens: []
   },
   {
     terrain: {
@@ -826,6 +826,7 @@ export const state: InvasionState = {
   perimeterDeck: [],
   perimeterSize: 3,
   consequencesDeck: [],
+  alertLevel: 0,
   message: "Initial message"
 };
 
@@ -835,6 +836,7 @@ export interface InvasionState {
   perimeterDeck: Tile[];
   perimeterSize: number;
   consequencesDeck: Consequence[];
+  alertLevel: number;
   message: string;
 }
 

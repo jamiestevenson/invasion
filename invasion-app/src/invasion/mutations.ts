@@ -21,6 +21,8 @@ export const mutations: MutationTree<InvasionState> = {
     const consDeck = consequencesDeckCopy();
     shuffle(consDeck)
     state.consequencesDeck = consDeck;
+
+    state.alertLevel = 0;
   },
   loadBoardError(state) {
     state.message = "error loading board";

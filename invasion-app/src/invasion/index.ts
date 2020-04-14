@@ -12,6 +12,7 @@ export const state: InvasionState = {
     perimeterDeck: [],
     perimeterSize: 0,
     consequencesDeck: [],
+    alertLevel: 0,
     message: "Empty state"
 };
 

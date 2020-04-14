@@ -22,7 +22,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Getter } from "vuex-class";
-import { Tile, Consequences } from "@/invasion/types";
+import { Tile, Consequence } from "@/invasion/types";
 import GridTile from "./GridTile.vue";
 
 const namespace = "invasion";
@@ -30,7 +30,7 @@ const namespace = "invasion";
 @Component({ components : { gridtile: GridTile } })
 export default class SideBoard extends Vue {
   @Getter("getPerimeter", { namespace }) getPerimeter : Tile[]; // eslint-disable-line
-  @Getter("getConsequencesDeck", { namespace }) getConsequencesDeck : Consequences[]; // eslint-disable-line
+  @Getter("getConsequencesDeck", { namespace }) getConsequencesDeck : Consequence[]; // eslint-disable-line
 }
 </script>
 
