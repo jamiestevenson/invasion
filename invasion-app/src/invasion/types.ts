@@ -432,129 +432,6 @@ const perimeterDeck: Tile[] = [
   }
 ];
 
-const consequencesDeck: Consequence[] = [
-  {
-    title: "Survivalist Bunker",
-    effects: [
-      "PLACE: 'Armed Resistance' token on any explored tile in the edge of the map",
-      "TRIGGER: A Resitance stack or Invader unit enters the same tile as the 'Armed Resistance' token",
-      "EFFECT: Destroy that entering unit/stake and remove the 'Armed Resistance' token"
-    ],
-    quote: "It's a wonder they got this far...",
-    note: "Resolves after step B"
-  },
-  {
-    title: "Materials Cache",
-    effects: [
-      "PLACE: a 'Mineral Seam' token on an invaded tile",
-      "TRIGGER: 1 Drone is present",
-      "EFFECT: Add +1 MINERALS to this tile and remove the 'Mineral Seam' token"
-    ],
-    quote: "They did not know what they had."
-  },
-  {
-    title: "Summer Camp",
-    effects: [
-      "PLACE: a 'Tourists' token on an invaded tile.",
-      "TRIGGER: 1 Drone is present",
-      "EFFECT: Add +1 POPULATION to this tile and remove the 'Tourists' token"
-    ],
-    quote: "You'll never want to leave."
-  },
-  {
-    title: "Backup Generators",
-    effects: [
-      "PLACE: A 'Generators' token on an invaded tile.",
-      "TRIGGER: 1 Drone is present",
-      "EFFECT: Add +1 ENERGY to this tile and remove the 'Generators' token"
-    ],
-    quote: "Sadly, not unlimited..."
-  },
-  {
-    title: "Secret Lab!",
-    effects: [
-      "PLACE: A 'Secret Lab' token on the newest perimeter tile",
-      "TRIGGER: The perimeter tile with the token is invaded",
-      "EFFECT: Gain one TECH"
-    ],
-    quote: "Perhaps you should have studied harder."
-  },
-  {
-    title: "Influential Collaborators",
-    effects: [
-      "PLACE: A 'Collaborators' token on a perimeter tile",
-      "TRIGGER: Spend one drone at this location to move the Collaborators token to a perimeter tile",
-      "EFFECT: When this perimeter tile is invaded, reduce the panic level by the population of this tile"
-    ],
-    quote: "They will be last.",
-    note: "Token remains on perimeter tile after it is invaded"
-  },
-  {
-    title: "Resistance",
-    effects: ["Place a resistance token from N"]
-  },
-  {
-    title: "Resistance",
-    effects: ["Place a resistance token from N-N-E"]
-  },
-  {
-    title: "Resistance",
-    effects: ["Place a resistance token from N-E"]
-  },
-  {
-    title: "Resistance",
-    effects: ["Place a resistance token from E-N-E"]
-  },
-  {
-    title: "Resistance",
-    effects: ["Place a resistance token from E"]
-  },
-  {
-    title: "Resistance",
-    effects: ["Place a resistance token from E-S-E"]
-  },
-  {
-    title: "Resistance",
-    effects: ["Place a resistance token from S-E"]
-  },
-  {
-    title: "Resistance",
-    effects: ["Place a resistance token from S-S-E"]
-  },
-  {
-    title: "Resistance",
-    effects: ["Place a resistance token from S"]
-  },
-  {
-    title: "Resistance",
-    effects: ["Place a resistance token from S-S-W"]
-  },
-  {
-    title: "Resistance",
-    effects: ["Place a resistance token from S-W"]
-  },
-  {
-    title: "Resistance",
-    effects: ["Place a resistance token from W-S-W"]
-  },
-  {
-    title: "Resistance",
-    effects: ["Place a resistance token from W"]
-  },
-  {
-    title: "Resistance",
-    effects: ["Place a resistance token from W-N-W"]
-  },
-  {
-    title: "Resistance",
-    effects: ["Place a resistance token from N-W"]
-  },
-  {
-    title: "Resistance",
-    effects: ["Place a resistance token from N-N-W"]
-  }
-];
-
 const buildings: Building[] = [
   {
     name: "Relay",
@@ -781,6 +658,119 @@ const buildings: Building[] = [
         ]
       }
     ]
+  }
+];
+
+const consequencesDeck : Consequence[] = [
+  {
+    title: "Survivalist Bunker",
+    effects: [
+      "PLACE: 'Armed Resistance' token on any explored tile in the edge of the map",
+      "TRIGGER: A Resitance stack or Invader unit enters the same tile as the 'Armed Resistance' token",
+      "EFFECT: Destroy that entering unit/stake and remove the 'Armed Resistance' token"
+    ],
+    quote: "It's a wonder they got this far...",
+    note: "Resolves after step B"
+  },
+  {
+    title: "Materials Cache",
+    effects: [
+      "PLACE: a 'Mineral Seam' token on an invaded tile",
+      "TRIGGER: 1 Drone is present",
+      "EFFECT: Add +1 MINERALS to this tile and remove the 'Mineral Seam' token"
+    ],
+    quote: "They did not know what they had."
+  },
+  {
+    title: "Summer Camp",
+    effects: [
+      "PLACE: a 'Tourists' token on an invaded tile.",
+      "TRIGGER: 1 Drone is present",
+      "EFFECT: Add +1 POPULATION to this tile and remove the 'Tourists' token"
+    ],
+    quote: "You'll never want to leave."
+  },
+  {
+    title: "Backup Generators",
+    effects: [
+      "PLACE: A 'Generators' token on an invaded tile.",
+      "TRIGGER: 1 Drone is present",
+      "EFFECT: Add +1 ENERGY to this tile and remove the 'Generators' token"
+    ],
+    quote: "Sadly, not unlimited..."
+  },
+  {
+    title: "Secret Lab!",
+    effects: [
+      "PLACE: A 'Secret Lab' token on the newest perimeter tile",
+      "TRIGGER: The perimeter tile with the token is invaded",
+      "EFFECT: Gain one TECH"
+    ],
+    quote: "Perhaps you shoudl have studied harder."
+  },
+  {
+    title: "Resistance",
+    effects: ["Place a resistance token from N"]
+  },
+  {
+    title: "Resistance",
+    effects: ["Place a resistance token from N-N-E"]
+  },
+  {
+    title: "Resistance",
+    effects: ["Place a resistance token from N-E"]
+  },
+  {
+    title: "Resistance",
+    effects: ["Place a resistance token from E-N-E"]
+  },
+  {
+    title: "Resistance",
+    effects: ["Place a resistance token from E"]
+  },
+  {
+    title: "Resistance",
+    effects: ["Place a resistance token from E-S-E"]
+  },
+  {
+    title: "Resistance",
+    effects: ["Place a resistance token from S-E"]
+  },
+  {
+    title: "Resistance",
+    effects: ["Place a resistance token from S-S-E"]
+  },
+  {
+    title: "Resistance",
+    effects: ["Place a resistance token from S"]
+  },
+  {
+    title: "Resistance",
+    effects: ["Place a resistance token from S-S-W"]
+  },
+  {
+    title: "Resistance",
+    effects: ["Place a resistance token from S-W"]
+  },
+  {
+    title: "Resistance",
+    effects: ["Place a resistance token from W-S-W"]
+  },
+  {
+    title: "Resistance",
+    effects: ["Place a resistance token from W"]
+  },
+  {
+    title: "Resistance",
+    effects: ["Place a resistance token from W-N-W"]
+  },
+  {
+    title: "Resistance",
+    effects: ["Place a resistance token from N-W"]
+  },
+  {
+    title: "Resistance",
+    effects: ["Place a resistance token from N-N-W"]
   }
 ];
 
